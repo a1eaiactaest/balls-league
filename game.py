@@ -22,7 +22,8 @@ class Game:
 
     self.screen = pygame.display.set_mode(self.settings.screen_size)
     self.background = pygame.image.load("assets/bg.png")
-    self.screen.blit(self.background, (0, 0))
+    self.background_rect = self.background.get_rect()
+    self.screen.blit(self.background, self.background_rect)
 
     self.rocket = Rocket(self)
 
