@@ -3,7 +3,6 @@ import sys
 import pygame
 
 from settings import Settings
-from assets import Images
 
 class Rocket:
   def __init__(self):
