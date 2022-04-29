@@ -3,6 +3,7 @@ import sys
 import pygame
 
 from settings import Settings
+from sprite import Rocket
 
 class Rocket:
   def __init__(self):
