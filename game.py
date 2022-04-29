@@ -20,10 +20,11 @@ class Game:
     pygame.init()
     pygame.display.set_caption("Rocket")
 
-  
     self.screen = pygame.display.set_mode(self.settings.screen_size)
     self.background = pygame.image.load("assets/bg.png")
     self.screen.blit(self.background, (0, 0))
+
+    self.rocket = Rocket(self)
 
   def _check_events(self):
     for event in pygame.event.get():
@@ -32,6 +33,8 @@ class Game:
       
   def _update_screen(self):
     # Draw stuff here
+    self.rocket.show()
+
     pygame.display.flip()
 
   def run_game(self):
