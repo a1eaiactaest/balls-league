@@ -3,6 +3,7 @@ import sys
 import pygame
 
 from settings import Settings
+from assets import Images
 
 class Rocket:
   def __init__(self):
@@ -26,7 +27,11 @@ class Game:
     pygame.init()
     pygame.display.set_caption("Rocket")
 
+  
     self.screen = pygame.display.set_mode(self.settings.screen_size)
+    self.bg = pygame.image.load("assets/bg.png")
+
+    self.screen.blit(self.bg,((-425),00))
 
   def _check_events(self):
     for event in pygame.event.get():
