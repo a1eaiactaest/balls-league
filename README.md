@@ -18,4 +18,4 @@ python3 game.py
 ------
 ![](docs/screen3.png)
 ------
-![](docs/screen1.png)
+![](docs/screen4.png)
