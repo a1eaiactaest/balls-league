@@ -3,7 +3,8 @@ import sys
 import pygame
 
 from settings import Settings
-from rocket import Rocket
+from player import Player
+from goalpost import GoalPost
 
 class Button:
   def __init__(self):
@@ -18,14 +19,16 @@ class Game:
     self.clock = pygame.time.Clock()
 
     pygame.init()
-    pygame.display.set_caption("Rocket")
+    pygame.display.set_caption("Balls")
 
     self.screen = pygame.display.set_mode(self.settings.screen_size)
-    self.background = pygame.image.load("assets/bg.png")
-    self.background_rect = self.background.get_rect()
-    self.screen.blit(self.background, self.background_rect)
+    self.screen_rect = self.screen.get_rect()
 
-    self.rocket = Rocket(self)
+    self.player_one = Player(self, self.screen_rect.bottom-50)
+    self.player_two = Player(self, self.screen_rect.top+50)
+
+    self.goalpost_one = GoalPost(self, self.screen_rect.midtop) 
+    self.goalpost_two = GoalPost(self, self.screen_rect.midbottom) 
 
   def _check_events(self):
     for event in pygame.event.get():
@@ -34,7 +37,10 @@ class Game:
       
   def _update_screen(self):
     # Draw stuff here
-    self.rocket.show()
+    self.player_one.draw()
+    self.player_two.draw()
+    self.goalpost_one.draw()
+    self.goalpost_two.draw()
 
     pygame.display.flip()
 
