@@ -22,3 +22,14 @@ class Settings:
     self.goal_post_color = colors.WHITE
     self.goal_post_width, self.goal_post_height = (200, 20)
     self.goal_post_size = (self.goal_post_width, self.goal_post_height)
+
+    # Ball
+    self.ball_x = self.screen_width/2
+    self.ball_y = self.screen_height/2
+    self.ball_position = (self.ball_x, self.ball_y)
+
+    self.ball_width, self.ball_height = (25,25)
+    self.ball_size = (self.ball_width, self.ball_height)
+    self.ball_border_radius = self.ball_width//2
+    
+    self.ball_color = colors.WHITE

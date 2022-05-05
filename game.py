@@ -6,6 +6,7 @@ from settings import Settings
 from colors import Colors 
 from player import Player
 from goalpost import GoalPost
+from ball import Ball
 
 class Button:
   def __init__(self):
@@ -19,8 +20,11 @@ class Game:
     self.settings = Settings()
     self.clock = pygame.time.Clock()
 
+    self.icon = pygame.image.load('assets/icon.png')
+
     pygame.init()
     pygame.display.set_caption("Balls League")
+    pygame.display.set_icon(self.icon)
 
     self.screen = pygame.display.set_mode(self.settings.screen_size)
     self.screen_rect = self.screen.get_rect()
@@ -32,6 +36,8 @@ class Game:
     self.goalpost_one = GoalPost(self, self.screen_rect.midtop) 
     self.goalpost_two = GoalPost(self, self.screen_rect.midbottom) 
     self.goal_posts = [self.goalpost_one, self.goalpost_two]
+
+    self.ball = Ball(self)
 
   def _check_events(self):
     for event in pygame.event.get():
@@ -93,6 +99,8 @@ class Game:
 
     self.goalpost_one.draw()
     self.goalpost_two.draw()
+
+    self.ball.draw()
 
     pygame.display.flip()
 
