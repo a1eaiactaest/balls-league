@@ -10,12 +10,11 @@ class Settings:
     self.player_width, self.player_height = (50,50)
     self.player_size = (self.player_width, self.player_height)
 
-    self.player_color = colors.RED
     self.player_speed = 5
 
-    self.player_x = self.screen_width//2
+    self.player_x = (self.screen_width/2) - self.player_width/2
     """
-    Set player_y in class contructor, it's not fixed.
+    Set player_y as object parameter, it's not fixed.
     """
 
     # Goal Post
