@@ -9,6 +9,7 @@ class Player(Sprite):
     self.screen = game.screen
     self.screen_rect = self.screen.get_rect()
     self.color = color
+    self.radius = self.settings.player_border_radius
 
     self.player_x = self.settings.player_x
     self.player_y = player_y
@@ -21,7 +22,7 @@ class Player(Sprite):
 
     
   def draw(self):
-    pygame.draw.rect(self.screen, self.color, self.rect)
+    pygame.draw.rect(self.screen, self.color, self.rect, border_radius=self.radius)
 
   def update(self):
     if self.moving_right and self.rect.right < self.screen_rect.right:

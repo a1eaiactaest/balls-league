@@ -9,6 +9,7 @@ class Settings:
     # Player
     self.player_width, self.player_height = (50,50)
     self.player_size = (self.player_width, self.player_height)
+    self.player_border_radius = self.player_width//2
 
     self.player_speed = 5
 
