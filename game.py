@@ -29,6 +29,7 @@ class Game:
     self.screen = pygame.display.set_mode(self.settings.screen_size)
     self.screen_rect = self.screen.get_rect()
 
+
     self.player_one = Player(self, Colors.MAGENTA, self.screen_rect.bottom-100)
     self.player_two = Player(self, Colors.CYAN, self.screen_rect.top+50)
     self.players = [self.player_one, self.player_two]
@@ -91,9 +92,15 @@ class Game:
         # check for collision with buttons
 
       
+  def _draw_field_lines(self):
+    pygame.draw.line(self.screen, Colors.WHITE, (0, self.settings.screen_height/2), (self.settings.screen_width, self.settings.screen_height/2), 2)
+    pygame.draw.circle(self.screen, Colors.WHITE, (self.screen_rect.centerx, self.screen_rect.centery), 80, width=2)
+
   def _update_screen(self):
     self.screen.fill(Colors.BLACK)
     # Draw stuff here
+    self._draw_field_lines()
+
     self.player_one.draw()
     self.player_two.draw()
 
