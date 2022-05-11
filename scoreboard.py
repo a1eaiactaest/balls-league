@@ -11,4 +11,4 @@ class Scoreboard:
     yellow = (255, 247, 0)
     font = pygame.font.Font('freesansbold.ttf', 32)
     text = font.render('Result', True, green, yellow)
-    text.get_rect()
+    text.draw()

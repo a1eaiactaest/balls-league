@@ -25,9 +25,9 @@ class Ball(Sprite):
   def draw(self, ball, players, player_one, player_two, goalpost_one, goalpost_two):
     collision = pygame.sprite.spritecollideany(ball, players)
     if collision == player_one:
-      print("player one")
+      pass
     if collision == player_two:
-      print("player two")
+      pass
     if collision == goalpost_one:
       pass
     if collision == goalpost_two:
