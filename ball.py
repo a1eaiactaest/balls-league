@@ -22,17 +22,30 @@ class Ball(Sprite):
     self.rect.centerx = self.screen_rect.centerx
     self.rect.centery = self.screen_rect.centery
 
+  def moving(self, x_move, y_move, power, player):
+    if self.rect.y > player.rect.y:
+      self.rect.y += power
+    else:
+      self.rect.y -= power
+    
+    if self.rect.x > player.rect.x:
+      self.rect.x += power
+    else:
+      self.rect.x -= power
+    #self.rect.y += power
+
   def draw(self):
     collision = pygame.sprite.spritecollideany(self, self.game.players)
-    print(collision)
     if collision == self.game.player_one:
-      pass
+      self.moving(4,5,6, self.game.player_one)
     if collision == self.game.player_two:
       pass
     if collision == self.game.goalpost_one:
       self.game.result_1 += 1
+      print("goal")
     if collision == self.game.goalpost_two:
       self.game.result_2 += 1
+      print("goal")
 
     pygame.draw.rect(self.game.screen, self.color, self.rect, border_radius=self.radius)
   
