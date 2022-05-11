@@ -111,7 +111,7 @@ class Game:
     self.goalpost_one.draw()
     self.goalpost_two.draw()
 
-    self.ball.draw(self.ball ,self.players, self.player_one, self.player_two, self.goalpost_one, self.goalpost_two, self.result_1, self.result_2)
+    self.ball.draw()
 
     Scoreboard.update(self, self.screen, self.result_1, self.result_2)
 
