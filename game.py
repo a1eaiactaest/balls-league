@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import sys
 import pygame
+from scoreboard import Scoreboard
 
 from settings import Settings
 from colors import Colors 
@@ -107,7 +108,9 @@ class Game:
     self.goalpost_one.draw()
     self.goalpost_two.draw()
 
-    self.ball.draw()
+    self.ball.draw(self.ball ,self.players, self.player_one, self.player_two, self.goalpost_one, self.goalpost_two)
+
+    Scoreboard.update(self)
 
     pygame.display.flip()
 
