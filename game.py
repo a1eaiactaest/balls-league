@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import sys
+from unittest import result
 import pygame
 from scoreboard import Scoreboard
 
@@ -40,6 +41,8 @@ class Game:
     self.goal_posts = [self.goalpost_one, self.goalpost_two]
 
     self.ball = Ball(self)
+    self.result_1 = 0
+    self.result_2 = 0
 
   def _check_events(self):
     for event in pygame.event.get():
@@ -108,9 +111,9 @@ class Game:
     self.goalpost_one.draw()
     self.goalpost_two.draw()
 
-    self.ball.draw(self.ball ,self.players, self.player_one, self.player_two, self.goalpost_one, self.goalpost_two)
+    self.ball.draw(self.ball ,self.players, self.player_one, self.player_two, self.goalpost_one, self.goalpost_two, self.result_1, self.result_2)
 
-    Scoreboard.update(self)
+    Scoreboard.update(self, self.screen, self.result_1, self.result_2)
 
     pygame.display.flip()
 

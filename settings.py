@@ -3,7 +3,7 @@ from colors import Colors as colors
 class Settings:
   def __init__(self):
     # Screen
-    self.screen_width, self.screen_height = (600, 900)
+    self.screen_width, self.screen_height = (500, 600)
     self.screen_size = (self.screen_width, self.screen_height)
 
     # Player
