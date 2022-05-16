@@ -1,4 +1,6 @@
 # Rocket Game
+## Notes
+(fizyka kolizji)[https://en.wikipedia.org/wiki/Elastic_collision]
 ## Deps
 
 Before playing make sure dependencies specified in [requirements.txt](requirements.txt) are satisfied.
