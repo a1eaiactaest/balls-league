@@ -2,7 +2,7 @@ import pygame
 from pygame.sprite import Sprite
 
 class Player(Sprite):
-  def __init__(self, game, color, player_y):
+  def __init__(self, game, color, start_player_y):
     super().__init__()
 
     self.game = game
@@ -12,8 +12,8 @@ class Player(Sprite):
     self.color = color
     self.radius = self.settings.player_border_radius
 
-    self.player_x = self.settings.player_x
-    self.player_y = player_y
+    self.start_player_x = self.settings.player_x
+    self.start_player_y = start_player_y
 
     self.allow_moving = True
 
@@ -21,8 +21,15 @@ class Player(Sprite):
     self.moving_left = False
     self.moving_down = False
     self.moving_up = False
-    self.rect = pygame.Rect(self.player_x, self.player_y, self.settings.player_width, self.settings.player_height)
+    self.rect = pygame.Rect(self.start_player_x, self.start_player_y, self.settings.player_width, self.settings.player_height)
+    self.player_x = self.start_player_x
+    self.player_y = self.start_player_y
+    
+    self.reset()
 
+  def reset(self):
+    self.rect.x = self.start_player_x
+    self.rect.y = self.start_player_y
     
   def draw(self):
     pygame.draw.rect(self.game.screen, self.color, self.rect, border_radius=self.radius)

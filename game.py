@@ -31,6 +31,7 @@ class Game:
     self.screen = pygame.display.set_mode(self.settings.screen_size)
     self.screen_rect = self.screen.get_rect()
 
+    self.scoreboard = Scoreboard(self)
 
     self.player_one = Player(self, Colors.MAGENTA, self.screen_rect.bottom-100)
     self.player_two = Player(self, Colors.CYAN, self.screen_rect.top+50)
@@ -41,8 +42,14 @@ class Game:
     self.goal_posts = [self.goalpost_one, self.goalpost_two]
 
     self.ball = Ball(self)
-    self.result_1 = 0
-    self.result_2 = 0
+
+    print(type(self.player_one))
+    print(type(self.goalpost_one))
+
+  def reset_positions(self):
+    self.ball.reset()
+    self.player_one.reset()
+    self.player_two.reset()
 
   def _check_events(self):
     for event in pygame.event.get():
@@ -113,7 +120,7 @@ class Game:
 
     self.ball.draw()
 
-    Scoreboard.update(self, self.screen, self.result_1, self.result_2)
+    self.scoreboard.update()
 
     pygame.display.flip()
 

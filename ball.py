@@ -34,18 +34,26 @@ class Ball(Sprite):
       self.rect.x -= power
     #self.rect.y += power
 
+  def reset(self):
+    self.rect.centerx = self.screen_rect.centerx
+    self.rect.centery = self.screen_rect.centery
+
   def draw(self):
-    collision = pygame.sprite.spritecollideany(self, self.game.players)
-    if collision == self.game.player_one:
+    player_collision = pygame.sprite.spritecollideany(self, self.game.players)
+    goalpost_collision = pygame.sprite.spritecollideany(self, self.game.goal_posts)
+
+
+    if player_collision == self.game.player_one:
       self.moving(4,5,6, self.game.player_one)
-    if collision == self.game.player_two:
+    if player_collision == self.game.player_two:
       pass
-    if collision == self.game.goalpost_one:
-      self.game.result_1 += 1
-      print("goal")
-    if collision == self.game.goalpost_two:
-      self.game.result_2 += 1
-      print("goal")
+
+    if goalpost_collision == self.game.goalpost_one:
+      self.game.scoreboard.player_one_scores()
+      self.game.reset_positions()
+    if goalpost_collision == self.game.goalpost_two:
+      self.game.scoreboard.player_two_scores()
+      self.game.reset_positions()
 
     pygame.draw.rect(self.game.screen, self.color, self.rect, border_radius=self.radius)
   
