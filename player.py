@@ -1,6 +1,7 @@
 import pygame
 from pygame.sprite import Sprite
 
+
 class Player(Sprite):
   def __init__(self, game, color, start_player_y):
     super().__init__()
@@ -24,6 +25,8 @@ class Player(Sprite):
     self.rect = pygame.Rect(self.start_player_x, self.start_player_y, self.settings.player_width, self.settings.player_height)
     self.player_x = self.start_player_x
     self.player_y = self.start_player_y
+
+    self.vector = pygame.Vector2(self.player_x, self.player_y)
     
     self.reset()
 

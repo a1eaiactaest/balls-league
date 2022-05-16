@@ -22,16 +22,30 @@ class Ball(Sprite):
     self.rect.centerx = self.screen_rect.centerx
     self.rect.centery = self.screen_rect.centery
 
+  def _out_of_bounds(self):
+    if self.rect.right <= self.screen_rect.right:
+      return True
+
+    if self.rect.left >= self.screen_rect.right:
+      return True
+
+    if self.rect.bottom >= self.screen_rect.bottom:
+      return False
+
+    if self.rect.top <= self.screen_rect.top:
+      return False
+
   def moving(self, power, player):
-    if self.rect.y > player.rect.y:
-      self.rect.y += power
-    else:
-      self.rect.y -= power
-    
-    if self.rect.x > player.rect.x:
-      self.rect.x += power
-    else:
-      self.rect.x -= power
+    if self._out_of_bounds():
+      if self.rect.y > player.rect.y:
+        self.rect.y += power
+      else:
+        self.rect.y -= power
+      
+      if self.rect.x > player.rect.x:
+        self.rect.x += power
+      else:
+        self.rect.x -= power
 
   def reset(self):
     self.rect.centerx = self.screen_rect.centerx
@@ -45,7 +59,7 @@ class Ball(Sprite):
     if player_collision == self.game.player_one:
       self.moving(6, self.game.player_one)
     if player_collision == self.game.player_two:
-      pass
+      self.moving(6, self.game.player_two)
 
     if goalpost_collision == self.game.goalpost_one:
       self.game.scoreboard.player_one_scores()
