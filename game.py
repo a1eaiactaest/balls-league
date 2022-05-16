@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import sys
-from unittest import result
 import pygame
 from scoreboard import Scoreboard
 
