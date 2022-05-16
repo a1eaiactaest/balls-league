@@ -22,7 +22,7 @@ class Ball(Sprite):
     self.rect.centerx = self.screen_rect.centerx
     self.rect.centery = self.screen_rect.centery
 
-  def moving(self, x_move, y_move, power, player):
+  def moving(self, power, player):
     if self.rect.y > player.rect.y:
       self.rect.y += power
     else:
@@ -32,7 +32,6 @@ class Ball(Sprite):
       self.rect.x += power
     else:
       self.rect.x -= power
-    #self.rect.y += power
 
   def reset(self):
     self.rect.centerx = self.screen_rect.centerx
@@ -44,7 +43,7 @@ class Ball(Sprite):
 
 
     if player_collision == self.game.player_one:
-      self.moving(4,5,6, self.game.player_one)
+      self.moving(6, self.game.player_one)
     if player_collision == self.game.player_two:
       pass
 
