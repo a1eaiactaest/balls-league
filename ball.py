@@ -22,6 +22,11 @@ class Ball(Sprite):
     self.rect.centerx = self.screen_rect.centerx
     self.rect.centery = self.screen_rect.centery
 
+    self.vector = pygame.Vector2(self.rect.centerx, self.rect.centery)
+
+  def vector_update(self):
+    self.vector.xy = self.rect.center
+
   def _out_of_bounds(self):
     if self.rect.left <= self.screen_rect.left:
       return True
@@ -49,6 +54,8 @@ class Ball(Sprite):
         self.rect.x += power
       else:
         self.rect.x -= power
+
+    self.vector_update()
 
   def reset(self):
     self.rect.centerx = self.screen_rect.centerx

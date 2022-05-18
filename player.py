@@ -26,9 +26,12 @@ class Player(Sprite):
     self.player_x = self.start_player_x
     self.player_y = self.start_player_y
 
-    self.vector = pygame.Vector2(self.player_x, self.player_y)
+    self.vector = pygame.Vector2(self.rect.centerx, self. rect.centery)
     
     self.reset()
+
+  def vector_update(self):
+    self.vector.xy = self.rect.center
 
   def reset(self):
     self.rect.x = self.start_player_x
@@ -50,4 +53,5 @@ class Player(Sprite):
 
       if self.moving_up and self.rect.top > self.screen_rect.top:
         self.rect.y -= self.settings.player_speed
+    self.vector_update()
 
