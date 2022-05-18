@@ -23,20 +23,23 @@ class Ball(Sprite):
     self.rect.centery = self.screen_rect.centery
 
   def _out_of_bounds(self):
-    if self.rect.right <= self.screen_rect.right:
+    if self.rect.left <= self.screen_rect.left:
+      return True
+    
+    elif self.rect.right >= self.screen_rect.right:
       return True
 
-    if self.rect.left >= self.screen_rect.right:
+    elif self.rect.bottom >= self.screen_rect.bottom:
       return True
 
-    if self.rect.bottom >= self.screen_rect.bottom:
-      return False
+    elif self.rect.top <= self.screen_rect.top:
+      return True
 
-    if self.rect.top <= self.screen_rect.top:
+    else: 
       return False
 
   def moving(self, power, player):
-    if self._out_of_bounds():
+    if not self._out_of_bounds():
       if self.rect.y > player.rect.y:
         self.rect.y += power
       else:
