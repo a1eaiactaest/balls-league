@@ -138,7 +138,7 @@ class Game:
       print(vector_deal)
 
       self._update_screen()
-      self.clock.tick(60)
+      self.clock.tick(120)
 
 if __name__ == "__main__":
   game = Game()
