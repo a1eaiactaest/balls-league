@@ -23,6 +23,7 @@ class Ball(Sprite):
     self.rect.centery = self.screen_rect.centery
 
     self.vector = pygame.Vector2(self.rect.centerx, self.rect.centery)
+    self.velocity = 0
 
   def vector_update(self):
     self.vector.xy = self.rect.center
@@ -45,15 +46,29 @@ class Ball(Sprite):
 
   def moving(self, power, player):
     if not self._out_of_bounds():
+      vector_deal = player.vector - self.vector
+      vector_deal[1] = vector_deal[1]*(-1)
+      
+      cord_sum = vector_deal[0] + vector_deal[1]
+
+      print(vector_deal)
+
       if self.rect.y > player.rect.y:
-        self.rect.y += power
+        self.rect.y += (cord_sum/vector_deal[1])*power
+      elif self.rect.y == player.rect.y:
+        pass
       else:
-        self.rect.y -= power
+        self.rect.y += (cord_sum/vector_deal[1])*power
       
       if self.rect.x > player.rect.x:
-        self.rect.x += power
+        print(vector_deal[0])
+        print(self.rect.x)
+        print(player.rect.x)
+        self.rect.x -= (cord_sum/vector_deal[0])*power
+      elif self.rect.x == player.rect.x:
+        pass
       else:
-        self.rect.x -= power
+        self.rect.x -= (cord_sum/vector_deal[0])*power
 
     self.vector_update()
 

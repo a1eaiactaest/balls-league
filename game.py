@@ -132,7 +132,10 @@ class Game:
       self._check_events()
       # Update things
       self._update_players()
-      print(f"{self.player_one.vector - self.ball.vector}")
+
+      vector_deal = self.player_one.vector - self.ball.vector
+      vector_deal[1] = vector_deal[1]*(-1)
+      print(vector_deal)
 
       self._update_screen()
       self.clock.tick(60)
