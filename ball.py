@@ -60,7 +60,7 @@ class Ball(Sprite):
       elif self.rect.centery == player.rect.centery:
         pass
       else:
-        self.rect.y += (cord_sum//vector_deal.y)*power
+        self.rect.y += (cord_sum/vector_deal.y)*power
       
       if self.rect.centerx > player.rect.centerx:
         print(vector_deal.x)
@@ -70,7 +70,7 @@ class Ball(Sprite):
       elif self.rect.centerx == player.rect.centerx:
         pass
       else:
-        self.rect.x -= (cord_sum//vector_deal.x)*power
+        self.rect.x -= (cord_sum/vector_deal.x)*power
 
     self.vector_update()
 
