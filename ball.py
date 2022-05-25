@@ -47,30 +47,30 @@ class Ball(Sprite):
   def moving(self, power, player):
     if not self._out_of_bounds():
       vector_deal = player.vector - self.vector
-      vector_deal[1] = vector_deal[1]*(-1)
+      vector_deal.y = vector_deal.y*(-1)
       
-      cord_sum = vector_deal[0] + vector_deal[1]
+      cord_sum = vector_deal.x + vector_deal.y
 
       print(vector_deal)
 
       if self.rect.centery > player.rect.centery:
-        self.rect.centery += (cord_sum/vector_deal[1])*power
+        self.rect.centery += (cord_sum/vector_deal.y)*power
         print(self.rect.centerx)
         print(player.rect.centerx)
       elif self.rect.centery == player.rect.centery:
         pass
       else:
-        self.rect.y += (cord_sum/vector_deal[1])*power
+        self.rect.y += (cord_sum/vector_deal.y)*power
       
       if self.rect.centerx > player.rect.centerx:
-        print(vector_deal[0])
+        print(vector_deal.x)
         print(self.rect.centerx)
         print(player.rect.centerx)
-        self.rect.x -= (cord_sum/vector_deal[0])*power
+        self.rect.x -= (cord_sum/vector_deal.x)*power
       elif self.rect.centerx == player.rect.centerx:
         pass
       else:
-        self.rect.x -= (cord_sum/vector_deal[0])*power
+        self.rect.x -= (cord_sum/vector_deal.x)*power
 
     self.vector_update()
 
