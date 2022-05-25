@@ -53,19 +53,21 @@ class Ball(Sprite):
 
       print(vector_deal)
 
-      if self.rect.y > player.rect.y:
-        self.rect.y += (cord_sum/vector_deal[1])*power
-      elif self.rect.y == player.rect.y:
+      if self.rect.centery > player.rect.centery:
+        self.rect.centery += (cord_sum/vector_deal[1])*power
+        print(self.rect.centerx)
+        print(player.rect.centerx)
+      elif self.rect.centery == player.rect.centery:
         pass
       else:
         self.rect.y += (cord_sum/vector_deal[1])*power
       
-      if self.rect.x > player.rect.x:
+      if self.rect.centerx > player.rect.centerx:
         print(vector_deal[0])
-        print(self.rect.x)
-        print(player.rect.x)
+        print(self.rect.centerx)
+        print(player.rect.centerx)
         self.rect.x -= (cord_sum/vector_deal[0])*power
-      elif self.rect.x == player.rect.x:
+      elif self.rect.centerx == player.rect.centerx:
         pass
       else:
         self.rect.x -= (cord_sum/vector_deal[0])*power
