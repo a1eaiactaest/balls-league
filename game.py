@@ -8,13 +8,7 @@ from colors import Colors
 from player import Player
 from goalpost import GoalPost
 from ball import Ball
-
-class Button:
-  def __init__(self):
-    raise NotImplementedError
-
-  def update(self):
-    raise NotImplementedError
+from button import Button
 
 class Game:
   def __init__(self):
@@ -30,7 +24,10 @@ class Game:
     self.screen = pygame.display.set_mode(self.settings.screen_size)
     self.screen_rect = self.screen.get_rect()
 
+    self.game_active = False
+
     self.scoreboard = Scoreboard(self)
+    self.button = Button(self, (200, 250), (100, 100), "Play")
 
     self.player_one = Player(self, Colors.MAGENTA, self.screen_rect.bottom-100)
     self.player_two = Player(self, Colors.CYAN, self.screen_rect.top+50)
@@ -41,9 +38,6 @@ class Game:
     self.goal_posts = [self.goalpost_one, self.goalpost_two]
 
     self.ball = Ball(self)
-
-    print(type(self.player_one))
-    print(type(self.goalpost_one))
 
   def reset_positions(self):
     self.ball.reset()
@@ -100,6 +94,9 @@ class Game:
       elif event.type == pygame.MOUSEBUTTONDOWN:
         mouse_position = pygame.mouse.get_pos()
         # check for collision with buttons
+        if self.button.rect.collidepoint(mouse_position):
+          self.game_active = True
+          print("GAME STARTED")
 
       
   def _draw_field_lines(self):
@@ -119,7 +116,9 @@ class Game:
 
     self.ball.draw()
 
-    self.scoreboard.update()
+
+    if not self.game_active:
+      self.button.show_button()
 
     pygame.display.flip()
 
@@ -130,12 +129,14 @@ class Game:
   def run_game(self):
     while True:
       self._check_events()
-      # Update things
-      self._update_players()
+      if self.game_active:
+        # Update things
+        self._update_players()
+        self.scoreboard.update()
 
-      vector_deal = self.player_one.vector - self.ball.vector
-      vector_deal[1] = vector_deal[1]*(-1)
-      print(vector_deal)
+        vector_deal = self.player_one.vector - self.ball.vector
+        vector_deal[1] = vector_deal[1]*(-1)
+        print(vector_deal)
 
       self._update_screen()
       self.clock.tick(120)
