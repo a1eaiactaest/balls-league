@@ -8,7 +8,7 @@ from colors import Colors
 from player import Player
 from goalpost import GoalPost
 from ball import Ball
-from button import Button
+from button import Button, ColorChooser
 
 class Game:
   def __init__(self):
