@@ -27,7 +27,8 @@ class Game:
     self.game_active = False
 
     self.scoreboard = Scoreboard(self)
-    self.button = Button(self, (200, 250), (100, 100), "Play")
+    self.play_button = Button(self, (200, 250), (100, 100), "Play")
+    self.pause_button = Button(self, (self.screen_rect.right-100, self.screen_rect.top), (100, 30), "Pause")
 
     self.player_one = Player(self, Colors.MAGENTA, self.screen_rect.bottom-100)
     self.player_two = Player(self, Colors.CYAN, self.screen_rect.top+50)
@@ -94,9 +95,13 @@ class Game:
       elif event.type == pygame.MOUSEBUTTONDOWN:
         mouse_position = pygame.mouse.get_pos()
         # check for collision with buttons
-        if self.button.rect.collidepoint(mouse_position):
+        if self.play_button.rect.collidepoint(mouse_position):
           self.game_active = True
           print("GAME STARTED")
+
+        if self.pause_button.rect.collidepoint(mouse_position):
+          self.game_active = False
+          print("GAME PAUSED")
 
       
   def _draw_field_lines(self):
@@ -116,9 +121,12 @@ class Game:
 
     self.ball.draw()
 
+    self.scoreboard.update()
 
     if not self.game_active:
-      self.button.show_button()
+      self.play_button.show_button()
+    else:
+      self.pause_button.show_button()
 
     pygame.display.flip()
 
@@ -132,11 +140,9 @@ class Game:
       if self.game_active:
         # Update things
         self._update_players()
-        self.scoreboard.update()
 
         vector_deal = self.player_one.vector - self.ball.vector
         vector_deal[1] = vector_deal[1]*(-1)
-        print(vector_deal)
 
       self._update_screen()
       self.clock.tick(120)
